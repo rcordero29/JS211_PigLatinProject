@@ -4,34 +4,49 @@
 const assert = require('assert');
 // brings in the readline module to access the command line
 const readline = require('readline');
+const { threadId } = require('worker_threads');
 // use the readline module to print out to the command line
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout
+  output: process.stdout,
 });
 
+function pigLatin(str) {
+  var PostitonVowel = firstVowel(str);
+  if (PostitonVowel > 0) {
+    return (
+      str.slice(PostitonVowel).trim() +
+      str.slice(0, PostitonVowel).trim() +
+      'ay'.toLowerCase().trim()
+    )
+      .toLowerCase()
+      .trim();
+  }
+  return str + 'yay'.toLowerCase().trim();
+}
 
-const pigLatin = (word) => {
-
-  // Your code here
-
+function firstVowel(str) {
+  for (let i = 0; i < str.length; i++) {
+    if ('aeiou'.indexOf(str[i]) !== -1) {
+      return i;
+    }
+  }
 }
 
 // the first function called in the program to get an input from the user
 // to run the function use the command: node main.js
 // to close it ctrl + C
 const getPrompt = () => {
-  rl.question('word ', (answer) => {
-    console.log( pigLatin(answer) );
+  rl.question('word', (answer) => {
+    console.log(pigLatin(answer));
     getPrompt();
   });
-}
+};
 
 // Unit Tests
 // to use them run the command: npm test main.js
 // to close them ctrl + C
 if (typeof describe === 'function') {
-
   describe('#pigLatin()', () => {
     it('should translate a simple word', () => {
       assert.equal(pigLatin('car'), 'arcay');
@@ -51,15 +66,8 @@ if (typeof describe === 'function') {
     });
   });
 } else {
-
   getPrompt();
-
 }
-
-
-
-
-
 
 // **********
 //   HINTS
