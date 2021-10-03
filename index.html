@@ -2,14 +2,23 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <script src="main.js"></script>
+    <title>Pig Latin Translator</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <hr/>
-    <div id="display-element"></div>
-    <button onclick="displayDate()">Click Me</button>
-    <hr/>
+    <div class="container">
+      <header class="header">
+        <img src="https://www.goodfreephotos.com/albums/vector-images/pig-vector-art.png" class="header__icon" alt="Pig Icon">
+        <h1 class="header__title">Pig Latin Translator</h1>
+      </header>
+      <div class="text-input">
+        <textarea class="text-input__input" id="textInput" cols="30" rows="10"></textarea>
+    
+      </div>
+      <div class="text-output" id="textOutput">
+    
+      </div>
+    </div>
   </body>
+  <script src="main.js"></script>
 </html>
